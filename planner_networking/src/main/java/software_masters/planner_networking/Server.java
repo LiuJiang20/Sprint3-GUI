@@ -3,6 +3,7 @@ package software_masters.planner_networking;
 import java.io.FileNotFoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -47,6 +48,8 @@ public interface Server extends Remote
 	 */
 	PlanFile getPlanOutline(String name, String cookie) throws IllegalArgumentException, RemoteException;
 
+	
+	ArrayList<String> getAllYears(String cookie)throws IllegalArgumentException, RemoteException;
 	/**
 	 * Saves planFile to the user's department if that planFile is marked as
 	 * editable. If not editable, an exception is thrown. An exception is also

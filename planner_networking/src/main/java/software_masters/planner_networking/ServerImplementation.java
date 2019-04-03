@@ -11,6 +11,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
@@ -127,13 +128,34 @@ public class ServerImplementation implements Server
 
 	}
 
+	
+	
+
+
+	/* (non-Javadoc)
+	 * @see software_masters.planner_networking.Server#getAllYears(java.lang.String)
+	 */
+	@Override
+	public ArrayList<String> getAllYears(String cookie) throws IllegalArgumentException, RemoteException
+	{
+		cookieChecker(cookie);
+		Account userAccount = cookieMap.get(cookie);
+		ArrayList<String> years = new ArrayList<String>();
+		
+		for (String string : userAccount.getDepartment().getPlanFileMap().keySet())
+		{
+			PlanFile file = userAccount.getDepartment().getPlanFileMap().get(string);
+			years.add(file.getYear());
+		}
+		return years;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see software_masters.planner_networking.Server#savePlan(software_masters.
 	 * planner_networking.PlanFile, java.lang.String)
 	 */
-
 	public void savePlan(PlanFile plan, String cookie)
 	{
 		cookieChecker(cookie);// checks that cookie is valid

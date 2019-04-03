@@ -1,6 +1,7 @@
 package software_masters.planner_networking;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 /**
  * @author lee kendall and wesley murray
@@ -74,6 +75,18 @@ public class Client
 		this.currNode = this.currPlanFile.getPlan().getRoot();
 	}
 
+	public ArrayList<String> getAllYears()
+	{
+		try
+		{
+			return server.getAllYears(this.cookie);
+		} catch (IllegalArgumentException | RemoteException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 	/**
 	 * Saves planFile to the user's department if that planFile is marked as
 	 * editable. If not editable, an exception is thrown. An exception is also
