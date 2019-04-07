@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 public class ConfirmationBox
 {
-	public static boolean confirmed;
+	public boolean confirmed;
 	Stage stage;
 	String title;
 	String message;
@@ -73,12 +73,14 @@ public class ConfirmationBox
 	
 	protected void okButtonAction()
 	{
-		
+		stage.close();
+		confirmed = true;
 	}
 	
 	protected void noButtonAction()
 	{
-		
+		stage.close();
+		confirmed = false;
 	}
 }
 

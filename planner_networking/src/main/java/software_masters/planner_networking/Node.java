@@ -11,6 +11,15 @@ import java.rmi.RemoteException;
 
 public class Node implements Serializable
 {
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString()
+	{
+		return name ;
+	}
+
 	private static final long serialVersionUID = 5908372020728915437L;
 	private Node parent;
 	private String name;

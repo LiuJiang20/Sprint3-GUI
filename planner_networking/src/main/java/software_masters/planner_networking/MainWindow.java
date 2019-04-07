@@ -59,10 +59,13 @@ public class MainWindow extends Application
 //		loginStage.show();
 //		setServerStage();
 //		serverStage.show();
-		setTemplateStage();
-		templateStage.show();
+//		setTemplateStage();
+//		templateStage.show();
 	}
-	
+	void editStage()
+	{
+		
+	}
 	void setServerStage()
 	{
 		String title = "Connect to Server";
