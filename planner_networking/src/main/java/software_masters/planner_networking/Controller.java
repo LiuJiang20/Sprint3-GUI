@@ -12,7 +12,7 @@ public class Controller
 
 	public Controller()
 	{
-		String host = "10.14.1.82";
+		String host = "10.14.1.80";
 		String name = "PlannerServer";
 		String username = "user";
 		String password = "1";
