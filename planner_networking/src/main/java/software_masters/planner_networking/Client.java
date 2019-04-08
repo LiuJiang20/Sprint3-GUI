@@ -20,7 +20,7 @@ public class Client
 	private PlanFile currPlanFile;
 	private Node currNode;
 	private Server server;
-
+	private ArrayList<Observer> observers;
 	/**
 	 * Sets the client's server.
 	 * 
@@ -255,6 +255,28 @@ public class Client
 	public void setServer(Server server)
 	{
 		this.server = server;
+	}
+	
+	public boolean register(Observer observer)
+	{
+		if (observer == null)
+		{
+			return false;
+		}
+		observers.add(observer);
+		return true;
+	}
+	
+	public boolean deregistry(Observer observer)
+	{
+		return observers.remove(observer);
+	}
+	public void notifyObservers()
+	{
+		for (Observer observer : observers)
+		{
+			observer.respond(currPlanFile.getPlan().getRoot());
+		}
 	}
 
 }

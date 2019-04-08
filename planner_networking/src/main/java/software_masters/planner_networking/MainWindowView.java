@@ -35,7 +35,7 @@ public class MainWindowView extends Application implements Observer
 	Stage stage;
 	Controller controller;
 	Node currNode;
-	
+	boolean isEditable;
 	public static void main(String[] args)
 	{
 		launch(args);
@@ -47,29 +47,31 @@ public class MainWindowView extends Application implements Observer
 	{
 		// TODO Auto-generated method stub
 		stage = primaryStage;
-//		controller = new Controller();
-//		setTreeView(controller.getRootNode());
-//		rootNode = controller.getRootNode();
-		setTreeView(new VMOSA().getRoot());
+		controller = new Controller();
+		setTreeView(controller.getRootNode());
+		//setTreeView(new VMOSA().getRoot());
 		setTreeItemAction();
 		saveButton = new Button("Save");
-		saveButton.setOnAction(e->saveAction());
-		
 		addButton = new Button("Add Child");
-		addButton.setOnAction(e->addAction());
-		
 		delButton = new Button("Delete");
-		delButton.setOnAction(e->deleteAction());
-		
 		exitButton = new Button("Exit");
-		exitButton.setOnAction(e->exitAction());
-		
 		pushButton = new Button("Push");
-		pushButton.setOnAction(e->pushAction());
 		
 		yearLabel = new Label("Year");
 		yearField = new TextField("2019");
 		yearField.setPrefWidth(80);
+		
+		
+		isEditable = controller.editable();
+		
+		if (isEditable)
+		{
+			saveButton.setOnAction(e->saveAction());
+			addButton.setOnAction(e->addAction());
+			delButton.setOnAction(e->deleteAction());
+			exitButton.setOnAction(e->exitAction());
+			pushButton.setOnAction(e->pushAction());
+		}
 		
 		int minWidth = 1000;
 		titleField = new TextField();

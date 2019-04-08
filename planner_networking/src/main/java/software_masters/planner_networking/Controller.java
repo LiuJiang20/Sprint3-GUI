@@ -12,11 +12,11 @@ public class Controller
 
 	public Controller()
 	{
-		String host = "";
-		String name = "";
-		String username = "";
-		String password = "";
-		String year = "";
+		String host = "10.14.1.82";
+		String name = "PlannerServer";
+		String username = "user";
+		String password = "1";
+		String year = "2019";
 		 
 		try
 		{
@@ -48,6 +48,7 @@ public class Controller
 			// TODO Auto-generated catch block
 			return e.toString();
 		}
+		client.notify();
 		return null;
 	}
 	
@@ -60,6 +61,7 @@ public class Controller
 		{
 			return e.toString();
 		}
+		client.notify();
 		return null;
 	}
 	
@@ -75,6 +77,9 @@ public class Controller
 		}
 		return null;
 	}
-	
+	public boolean editable()
+	{
+		return client.getCurrPlanFile().isCanEdit();
+	}
 	
 }
