@@ -59,6 +59,12 @@ public class ServerImplementation implements Server
 		PlanFile planfile = new PlanFile("2019", true, plan);
 		dpt.addPlan("2019", planfile);
 
+		Plan plan2 = new Centre();
+		plan2.setName("Centre_Plan_2");
+		PlanFile planfile2 = new PlanFile("2018", false, plan2);
+		dpt.addPlan("2018", planfile2);
+		
+		
 		Plan defaultCentre = new Centre();
 		Plan defaultVMOSA = new VMOSA();
 		this.planTemplateMap.put("Centre", new PlanFile(null, true, defaultCentre));
@@ -544,7 +550,8 @@ public class ServerImplementation implements Server
 	public static void main(String[] args) throws RemoteException
 	{
 		System.out.println("Start Server");
-		ServerImplementation server;
+		ServerImplementation server = new ServerImplementation();
+		server.save();
 		Registry registry;
 		try
 		{

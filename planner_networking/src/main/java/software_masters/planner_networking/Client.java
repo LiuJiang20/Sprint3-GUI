@@ -29,6 +29,7 @@ public class Client
 	public Client(Server server)
 	{
 		this.server = server;
+		observers = new ArrayList<Observer>();
 	}
 
 	/**
@@ -271,6 +272,8 @@ public class Client
 	{
 		return observers.remove(observer);
 	}
+	
+	
 	public void notifyObservers()
 	{
 		for (Observer observer : observers)

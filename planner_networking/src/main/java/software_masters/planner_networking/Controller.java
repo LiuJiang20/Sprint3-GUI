@@ -1,5 +1,6 @@
 package software_masters.planner_networking;
 
+import java.lang.ref.Cleaner.Cleanable;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -10,28 +11,25 @@ public class Controller
 	Client client;
 	
 
-	public Controller()
+	public Controller() throws RemoteException, NotBoundException
 	{
-		String host = "10.14.1.80";
+		String host = "10.14.1.82";
 		String name = "PlannerServer";
 		String username = "user";
-		String password = "1";
+		String password = "user";
 		String year = "2019";
 		 
-		try
-		{
+	
 			Registry registry;
-			registry = LocateRegistry.getRegistry(host);
+			registry = LocateRegistry.getRegistry(host,1060);
+			System.out.println("Get here!");
 			Server server;
 			server = (Server) registry.lookup(name);
 			client = new Client(server);
 			client.login(username, password);
 			client.getPlan(year);
-		} catch (RemoteException | NotBoundException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			System.out.println(client);
+			System.out.println("Current Plan file is : "+client.getCurrPlanFile());
 		
 	}
 	public Node getRootNode()
@@ -48,7 +46,7 @@ public class Controller
 			// TODO Auto-generated catch block
 			return e.toString();
 		}
-		client.notify();
+		client.notifyObservers();
 		return null;
 	}
 	
@@ -61,7 +59,7 @@ public class Controller
 		{
 			return e.toString();
 		}
-		client.notify();
+		client.notifyObservers();
 		return null;
 	}
 	
@@ -82,4 +80,8 @@ public class Controller
 		return client.getCurrPlanFile().isCanEdit();
 	}
 	
+	public void register(Observer observer)
+	{
+		client.register(observer);
+	}
 }

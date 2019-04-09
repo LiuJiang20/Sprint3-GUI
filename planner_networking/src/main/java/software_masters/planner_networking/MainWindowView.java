@@ -1,14 +1,15 @@
 package software_masters.planner_networking;
 
+
+
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.Border;
@@ -32,6 +33,7 @@ public class MainWindowView extends Application implements Observer
 	TextField titleField;
 	TextField contentField;
 	
+	BorderPane editAndTreeViewBorderPane = new BorderPane();
 	Stage stage;
 	Controller controller;
 	Node currNode;
@@ -44,13 +46,12 @@ public class MainWindowView extends Application implements Observer
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception
-	{
-		// TODO Auto-generated method stub
+	{ 
+		
 		stage = primaryStage;
 		controller = new Controller();
-		setTreeView(controller.getRootNode());
+		controller.register(this);
 		//setTreeView(new VMOSA().getRoot());
-		setTreeItemAction();
 		saveButton = new Button("Save");
 		addButton = new Button("Add Child");
 		delButton = new Button("Delete");
@@ -64,14 +65,30 @@ public class MainWindowView extends Application implements Observer
 		
 		isEditable = controller.editable();
 		
+		
 		if (isEditable)
 		{
 			saveButton.setOnAction(e->saveAction());
 			addButton.setOnAction(e->addAction());
 			delButton.setOnAction(e->deleteAction());
-			exitButton.setOnAction(e->exitAction());
 			pushButton.setOnAction(e->pushAction());
+			
+			Tooltip saveTooltip = new Tooltip("Save the current section");
+			saveButton.setTooltip(saveTooltip);
+			
+			Tooltip deleteTooltip = new Tooltip("Delete the section selected at tree view");
+			delButton.setTooltip(deleteTooltip);
+			
+			Tooltip addTooltip = new Tooltip("Add a branch under current section\n if you want to add a child at same level as current section,\\ go to its parent section ");
+			addButton.setTooltip(addTooltip);
+			
+			pushButton.setTooltip(new Tooltip("Push this file to the server"));
 		}
+		
+		exitButton.setOnAction(e->exitAction());
+		Tooltip exiTooltip = new Tooltip("Exit editing window");
+		exitButton.setTooltip(exiTooltip);
+		
 		
 		int minWidth = 1000;
 		titleField = new TextField();
@@ -82,6 +99,9 @@ public class MainWindowView extends Application implements Observer
 		contentField.setAlignment(Pos.TOP_LEFT);
 		contentField.setMinWidth(minWidth);
 		contentField.setMinHeight(minWidth);
+		
+		setTreeView(controller.getRootNode());
+		
 		
 		HBox buttonBox = new HBox(saveButton,addButton,delButton);
 		for (int i = 0; i < buttonBox.getChildren().size(); i++)
@@ -103,7 +123,6 @@ public class MainWindowView extends Application implements Observer
 		editBorderPane.setTop(titleField);
 		editBorderPane.setCenter(contentField);
 		
-		BorderPane editAndTreeViewBorderPane = new BorderPane();
 		editAndTreeViewBorderPane.setCenter(editBorderPane);
 		editAndTreeViewBorderPane.setLeft(treeView);
 		
@@ -117,6 +136,19 @@ public class MainWindowView extends Application implements Observer
 		
 		
 	}
+
+		
+	private void setTreeView(Node root)
+	{
+		treeView = new TreeView<Node>(convertTree(root));
+		editAndTreeViewBorderPane.setLeft(treeView);
+		setTreeItemAction();
+		expand(treeView.getRoot());
+		currNode = root;
+		titleField.setText(root.getName());
+		contentField.setText(root.getData());
+	}
+	
 	private void setTreeItemAction()
 	{
 		treeView.getSelectionModel().selectedItemProperty().addListener((v,oldValue,newValue)->
@@ -125,12 +157,15 @@ public class MainWindowView extends Application implements Observer
 			changeSection(newValue);}
 		);
 	}
-		
-	private void setTreeView(Node root)
-	{
-		treeView = new TreeView<Node>(convertTree(root));
-	}
 	
+	private void expand(TreeItem<Node> root)
+	{
+		root.setExpanded(true);
+		for (TreeItem<Node> child : root.getChildren())
+		{
+			expand(child);
+		}
+	}
 	private TreeItem<Node> convertTree(Node root)
 	{
 		TreeItem<Node> newRoot = new TreeItem<Node>(root);
@@ -157,22 +192,39 @@ public class MainWindowView extends Application implements Observer
 	private void checkSave()
 	{
 		boolean changed = false;
+		System.out.println("CheckSave: "+currNode);
+		if (titleField.getText() == null)
+		{
+			if (currNode.getName()!= null)
+			{
+				changed = true;
+			}
+		}
 		if (!titleField.getText().equals(currNode.getName()))
 		{
 			changed = true;
 		}
 		
-		if (!contentField.getText().equals(currNode.getData()))
+		if (contentField.getText() == null)
+		{
+			if (currNode.getData() != null)
+			{
+				changed = true;
+			}
+		}
+		else if (!contentField.getText().equals(currNode.getData()))
 		{
 			changed = true;
 		}
 		
+		System.out.println(changed);
 		if (changed)
 		{
 			//ask user if he wants to save
 			String title = "Warning";
 			String text = "The section you are editing is not saved.\n Do you want to save it?";
 			ConfirmationBox box = new ConfirmationBox(text, title);
+			box.show();
 			if (box.confirmed)
 			{
 				saveAction();
@@ -186,25 +238,25 @@ public class MainWindowView extends Application implements Observer
 		if (message != null)
 		{
 			//Display the error message
-			new ErrorMessage(message);
+			new ErrorMessage(message).show();;
 		}
 	}
 	
 	private void deleteAction()
 	{
 		String message = controller.deleteNode(currNode);
+		System.out.println("Deleting the node!");
 		if (message != null)
 		{
-			new ErrorMessage(message);
+			new ErrorMessage(message).show();
 		}
-		else 
-		{
-			//Change the display to removed node's parent
-			currNode = currNode.getParent();
-			titleField.setText(currNode.getName());
-			contentField.setText(currNode.getData());
-			
-		}
+//		else 
+//		{
+//			//Change the display to removed node's parent
+//			currNode = currNode.getParent();
+//			titleField.setText(currNode.getName());
+//			contentField.setText(currNode.getData());			
+//		}
 	}
 	
 	private void pushAction()
@@ -212,7 +264,7 @@ public class MainWindowView extends Application implements Observer
 		String message = controller.pushToServer();
 		if (message != null)
 		{
-			new ErrorMessage(message);
+			new ErrorMessage(message).show();
 		}
 	}
 	
@@ -230,6 +282,7 @@ public class MainWindowView extends Application implements Observer
 	public void respond(Node node)
 	{
 		setTreeView(node);
+		
 		
 	}
 	
