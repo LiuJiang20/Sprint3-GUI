@@ -25,32 +25,64 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MainWindow.
+ */
 public class MainWindow extends Application
 {
 	
+	/** The server stage. */
 	private Stage serverStage;
+	
+	/** The login stage. */
 	private Stage loginStage;
+	
+	/** The template stage. */
 	private Stage templateStage;
+	
+	/** The edit stage. */
 	private Stage editStage;
 	
 	
+	/** The ip filed. */
 	private TextField ipFiled ;
+	
+	/** The server name field. */
 	private TextField serverNameField;
 	
+	/** The username field. */
 	private TextField usernameField;
+	
+	/** The password field. */
 	private TextField passwordField;
+	
+	/** The registry. */
 	private Registry registry;
 	
+	/** The year buttons. */
 	private  ArrayList<Button> yearButtons;
 	
+	/** The client. */
 	private Client client;
+	
+	/** The server. */
 	private Server server;
+	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args)
 	{
 		// TODO Auto-generated method stub
 		launch(args);
 	}
 
+	/* (non-Javadoc)
+	 * @see javafx.application.Application#start(javafx.stage.Stage)
+	 */
 	@Override
 	public void start(Stage primaryStage) throws Exception
 	{
@@ -62,10 +94,18 @@ public class MainWindow extends Application
 //		setTemplateStage();
 //		templateStage.show();
 	}
+	
+	/**
+	 * Edits the stage.
+	 */
 	void editStage()
 	{
 		
 	}
+	
+	/**
+	 * Sets the server stage.
+	 */
 	void setServerStage()
 	{
 		String title = "Connect to Server";
@@ -108,6 +148,9 @@ public class MainWindow extends Application
 		serverStage.setScene(scene);	
 	}
 	
+	/**
+	 * Connect.
+	 */
 	private void connect()
 	{
 		try
@@ -126,6 +169,9 @@ public class MainWindow extends Application
 		
 	}
 	
+	/**
+	 * Sets the login stage.
+	 */
 	void setLoginStage()
 	{
 		String title = "Login";
@@ -169,6 +215,9 @@ public class MainWindow extends Application
 		loginStage.setScene(scene);
 	}
 	
+	/**
+	 * Login.
+	 */
 	void login()
 	{
 		try
@@ -186,6 +235,9 @@ public class MainWindow extends Application
 		}
 	}
 	
+	/**
+	 * Sets the template stage.
+	 */
 	void setTemplateStage()
 	{
 		templateStage = new Stage();

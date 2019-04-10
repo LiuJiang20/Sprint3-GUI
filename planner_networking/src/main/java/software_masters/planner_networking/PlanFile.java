@@ -3,22 +3,32 @@ package software_masters.planner_networking;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author lee.kendall
- * @author wesley murray
+ * The Class PlanFile.
  */
 public class PlanFile implements Serializable // extends UnicastRemoteObject
 {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 8679415216780269027L;
+	
+	/** The year. */
 	private String year;
+	
+	/** The can edit. */
 	private boolean canEdit;
+	
+	/** The plan. */
 	private Plan plan;
 
 	/**
-	 * @param year
-	 * @param canEdit
-	 * @param plan
+	 * Instantiates a new plan file.
+	 *
+	 * @param year the year
+	 * @param canEdit the can edit
+	 * @param plan the plan
+	 * @throws RemoteException the remote exception
 	 */
 	public PlanFile(String year, boolean canEdit, Plan plan) throws RemoteException
 	{
@@ -28,7 +38,9 @@ public class PlanFile implements Serializable // extends UnicastRemoteObject
 	}
 
 	/**
-	 * Default constructor for serialization
+	 * Instantiates a new plan file.
+	 *
+	 * @throws RemoteException the remote exception
 	 */
 	public PlanFile() throws RemoteException
 	{
@@ -38,6 +50,8 @@ public class PlanFile implements Serializable // extends UnicastRemoteObject
 	}
 
 	/**
+	 * Gets the year.
+	 *
 	 * @return the year
 	 */
 	public String getYear()
@@ -46,7 +60,9 @@ public class PlanFile implements Serializable // extends UnicastRemoteObject
 	}
 
 	/**
-	 * @param year the year to set
+	 * Sets the year.
+	 *
+	 * @param year the new year
 	 */
 	public void setYear(String year)
 	{
@@ -54,7 +70,9 @@ public class PlanFile implements Serializable // extends UnicastRemoteObject
 	}
 
 	/**
-	 * @return the canEdit
+	 * Checks if is can edit.
+	 *
+	 * @return true, if is can edit
 	 */
 	public boolean isCanEdit()
 	{
@@ -62,7 +80,9 @@ public class PlanFile implements Serializable // extends UnicastRemoteObject
 	}
 
 	/**
-	 * @param canEdit the canEdit to set
+	 * Sets the can edit.
+	 *
+	 * @param canEdit the new can edit
 	 */
 	public void setCanEdit(boolean canEdit)
 	{
@@ -70,6 +90,8 @@ public class PlanFile implements Serializable // extends UnicastRemoteObject
 	}
 
 	/**
+	 * Gets the plan.
+	 *
 	 * @return the plan
 	 */
 	public Plan getPlan()
@@ -78,7 +100,9 @@ public class PlanFile implements Serializable // extends UnicastRemoteObject
 	}
 
 	/**
-	 * @param plan the plan to set
+	 * Sets the plan.
+	 *
+	 * @param plan the new plan
 	 */
 	public void setPlan(Plan plan)
 	{

@@ -9,13 +9,18 @@ import java.rmi.RemoteException;
 
 import org.junit.Test;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author Courtney and Jack
- *
+ * The Class CentreTest.
  */
 public class CentreTest
 {
 
+	/**
+	 * Test.
+	 *
+	 * @throws RemoteException the remote exception
+	 */
 	@Test
 	public void test() throws RemoteException
 	{
@@ -67,6 +72,11 @@ public class CentreTest
 
 	}
 
+	/**
+	 * Invalid arguments.
+	 *
+	 * @throws RemoteException the remote exception
+	 */
 	// test invalid arguments
 	@Test
 	public void invalidArguments() throws RemoteException

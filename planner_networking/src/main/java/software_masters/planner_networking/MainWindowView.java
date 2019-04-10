@@ -19,36 +19,83 @@ import javafx.scene.layout.Region;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MainWindowView.
+ */
 public class MainWindowView extends Application implements Observer
 {
+	
+	/** The save button. */
 	Button saveButton;
+	
+	/** The add button. */
 	Button addButton;
+	
+	/** The del button. */
 	Button delButton;
+	
+	/** The push button. */
 	Button pushButton;
+	
+	/** The exit button. */
 	Button exitButton;
+	
+	/** The year label. */
 	Label yearLabel;
+	
+	/** The year field. */
 	TextField yearField;
 	
+	/** The tree view. */
 	TreeView<Node> treeView;
+	
+	/** The title field. */
 	TextField titleField;
+	
+	/** The content field. */
 	TextField contentField;
 	
+	/** The edit and tree view border pane. */
 	BorderPane editAndTreeViewBorderPane = new BorderPane();
+	
+	/** The stage. */
 	Stage stage;
+	
+	/** The controller. */
 	Controller controller;
+	
+	/** The curr node. */
 	Node currNode;
+	
+	/** The is editable. */
 	boolean isEditable;
+	
+	/** The is pushed. */
+	boolean isPushed;
+	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args)
 	{
 		launch(args);
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see javafx.application.Application#start(javafx.stage.Stage)
+	 */
 	@Override
 	public void start(Stage primaryStage) throws Exception
 	{ 
-		
+		/*
+		 * Initialize all Buttons and set on their actions
+		 * */		
 		stage = primaryStage;
+		isPushed = true;
 		controller = new Controller();
 		controller.register(this);
 		//setTreeView(new VMOSA().getRoot());
@@ -59,14 +106,22 @@ public class MainWindowView extends Application implements Observer
 		pushButton = new Button("Push");
 		
 		yearLabel = new Label("Year");
-		yearField = new TextField("2019");
+		if (controller.getYear() != null)
+		{
+			yearField = new TextField(controller.getYear());
+		}
+		else 
+		{
+			yearField = new TextField("2019");
+		}
+		
 		yearField.setPrefWidth(80);
 		
 		
 		isEditable = controller.editable();
-		
-		
-		if (isEditable)
+		/*
+		 * Sets on actions only if the plan is editable*/
+		if(isEditable)
 		{
 			saveButton.setOnAction(e->saveAction());
 			addButton.setOnAction(e->addAction());
@@ -83,13 +138,18 @@ public class MainWindowView extends Application implements Observer
 			addButton.setTooltip(addTooltip);
 			
 			pushButton.setTooltip(new Tooltip("Push this file to the server"));
-		}
 		
+		}
+		else 
+		{
+			yearField.setDisable(true);
+		}
 		exitButton.setOnAction(e->exitAction());
 		Tooltip exiTooltip = new Tooltip("Exit editing window");
 		exitButton.setTooltip(exiTooltip);
 		
-		
+		/*
+		 * Get everything laid properly*/
 		int minWidth = 1000;
 		titleField = new TextField();
 		titleField.setMinWidth(minWidth);
@@ -134,10 +194,19 @@ public class MainWindowView extends Application implements Observer
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		
+		if (!isEditable)
+		{
+			new ErrorMessage("This file is read-only. Any modification will not work!").show();
+		}
 		
 	}
 
 		
+	/**
+	 * Sets the tree view.
+	 *
+	 * @param root the new tree view
+	 */
 	private void setTreeView(Node root)
 	{
 		treeView = new TreeView<Node>(convertTree(root));
@@ -149,15 +218,26 @@ public class MainWindowView extends Application implements Observer
 		contentField.setText(root.getData());
 	}
 	
+	/**
+	 * Sets the tree item action.
+	 */
 	private void setTreeItemAction()
 	{
 		treeView.getSelectionModel().selectedItemProperty().addListener((v,oldValue,newValue)->
 		{
-			checkSave();
+			if (isEditable)
+			{
+				checkSave();
+			}
 			changeSection(newValue);}
 		);
 	}
 	
+	/**
+	 * Expand.
+	 *
+	 * @param root the root
+	 */
 	private void expand(TreeItem<Node> root)
 	{
 		root.setExpanded(true);
@@ -166,6 +246,13 @@ public class MainWindowView extends Application implements Observer
 			expand(child);
 		}
 	}
+	
+	/**
+	 * Convert tree.
+	 *
+	 * @param root the root
+	 * @return the tree item
+	 */
 	private TreeItem<Node> convertTree(Node root)
 	{
 		TreeItem<Node> newRoot = new TreeItem<Node>(root);
@@ -176,12 +263,21 @@ public class MainWindowView extends Application implements Observer
 		return newRoot;
 	}
 
+	/**
+	 * Save action.
+	 */
 	private void saveAction()
 	{
 		currNode.setName(titleField.getText());
 		currNode.setData(contentField.getText());
+		isPushed = false;
 	}
 	
+	/**
+	 * Change section.
+	 *
+	 * @param item the item
+	 */
 	private void changeSection(TreeItem<Node> item)
 	{
 		currNode = item.getValue();
@@ -189,6 +285,9 @@ public class MainWindowView extends Application implements Observer
 		contentField.setText(currNode.getData());
 	}
 	
+	/**
+	 * Check save.
+	 */
 	private void checkSave()
 	{
 		boolean changed = false;
@@ -232,6 +331,9 @@ public class MainWindowView extends Application implements Observer
 		}
 	}
 
+	/**
+	 * Adds the action.
+	 */
 	private void addAction()
 	{
 		String message = controller.addNode(currNode);
@@ -242,6 +344,9 @@ public class MainWindowView extends Application implements Observer
 		}
 	}
 	
+	/**
+	 * Delete action.
+	 */
 	private void deleteAction()
 	{
 		String message = controller.deleteNode(currNode);
@@ -259,6 +364,9 @@ public class MainWindowView extends Application implements Observer
 //		}
 	}
 	
+	/**
+	 * Push action.
+	 */
 	private void pushAction()
 	{
 		String message = controller.pushToServer();
@@ -268,9 +376,21 @@ public class MainWindowView extends Application implements Observer
 		}
 	}
 	
+	/**
+	 * Exit action.
+	 */
 	private void exitAction()
 	{
 		checkSave();
+		if (!isPushed)
+		{
+			ConfirmationBox box = new ConfirmationBox("The file has not been pushed to the server.\nDo you want to push it to the server?", "");
+			box.show();
+			if (box.confirmed)
+			{
+				pushAction();
+			}
+		}
 		stage.close();
 	}
 
@@ -282,7 +402,7 @@ public class MainWindowView extends Application implements Observer
 	public void respond(Node node)
 	{
 		setTreeView(node);
-		
+		isPushed = false;
 		
 	}
 	

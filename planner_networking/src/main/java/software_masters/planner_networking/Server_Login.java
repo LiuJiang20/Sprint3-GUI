@@ -9,15 +9,36 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Server_Login.
+ */
 public class Server_Login
 {
 
+	/** The label 1. */
 	String label1;
+	
+	/** The label 2. */
 	String label2;
+	
+	/** The button label. */
 	String buttonLabel;
+	
+	/** The title. */
 	String title;
+	
+	/** The stage. */
 	Stage stage;
 	
+	/**
+	 * Instantiates a new server login.
+	 *
+	 * @param label1 the label 1
+	 * @param label2 the label 2
+	 * @param buttonLabel the button label
+	 * @param title the title
+	 */
 	public Server_Login(String label1, String label2, String buttonLabel, String title)
 	{
 		super();
@@ -28,6 +49,9 @@ public class Server_Login
 	}
 
 
+	/**
+	 * Show.
+	 */
 	public void show()
 	{
 		stage = new Stage();

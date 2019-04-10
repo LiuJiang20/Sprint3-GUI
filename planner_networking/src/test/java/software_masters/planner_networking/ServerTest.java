@@ -7,40 +7,41 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author Wesley Murray
- * @author Lee Kendall
- * 
- *         This class verifies that server is working properly. initialized with
- *         two accounts - an Admin(Username: admin, password: admin, cookie: 0)
- *         and a normal user (Username: user, password: user, cookie: 1)
- *         initialized with one department - (name: default) The default
- *         department has a default plan file - (year: "2019", candEdit: true,
- *         Plan Centre_Plan_1) planTemplateMap is initialized with VMOSA and
- *         Centre
- *
+ * The Class ServerTest.
  */
 public class ServerTest
 {
 
+	/** The test server. */
 	static Server testServer;
 
+	/**
+	 * Sets the up before class.
+	 *
+	 * @throws Exception the exception
+	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception
 	{
 		testServer = (Server) new ServerImplementation();
 	}
 
+	/**
+	 * Tear down after class.
+	 *
+	 * @throws Exception the exception
+	 */
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception
 	{
 	}
 
 	/**
-	 * This method tests that a new type of business plan can be added to server by
-	 * a developer
-	 * 
-	 * @throws RemoteException
+	 * Test add plan template.
+	 *
+	 * @throws RemoteException the remote exception
 	 */
 	@Test
 	public void testAddPlanTemplate() throws RemoteException
@@ -53,9 +54,9 @@ public class ServerTest
 	}
 
 	/**
-	 * Tests that the server can be saved to xml and reloaded correctly
-	 * 
-	 * @throws Exception
+	 * Test serialization.
+	 *
+	 * @throws Exception the exception
 	 */
 	@Test
 	public void testSerialization() throws Exception

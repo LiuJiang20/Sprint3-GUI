@@ -4,20 +4,29 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author Courtney and Jack
- * @author wesley and lee.
- *
+ * The Class Plan.
  */
 public abstract class Plan implements Serializable// extends UnicastRemoteObject
 {
+	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1538776243780396317L;
+	
+	/** The name. */
 	private String name;
+	
+	/** The default nodes. */
 	private ArrayList<String> defaultNodes = new ArrayList<String>();
+	
+	/** The root. */
 	private Node root;
 
 	/**
-	 * @throws RemoteException
+	 * Instantiates a new plan.
+	 *
+	 * @throws RemoteException the remote exception
 	 */
 	public Plan() throws RemoteException
 	{
@@ -26,13 +35,16 @@ public abstract class Plan implements Serializable// extends UnicastRemoteObject
 		addDefaultNodes();
 	}
 
+	/**
+	 * Sets the default strings.
+	 */
 	// creates string array node hierarchy in subclass
 	abstract protected void setDefaultStrings();
 
 	/**
-	 * This class builds default template based on string array
-	 * 
-	 * @throws RemoteException
+	 * Adds the default nodes.
+	 *
+	 * @throws RemoteException the remote exception
 	 */
 	protected void addDefaultNodes() throws RemoteException
 	{
@@ -43,23 +55,29 @@ public abstract class Plan implements Serializable// extends UnicastRemoteObject
 	}
 
 	/**
-	 * @param parent
-	 * @return
+	 * Adds the node.
+	 *
+	 * @param parent the parent
+	 * @return true, if successful
+	 * @throws RemoteException the remote exception
+	 * @throws IllegalArgumentException the illegal argument exception
 	 */
 	abstract public boolean addNode(Node parent) throws RemoteException, IllegalArgumentException;
 
 	/**
-	 * @param Node
-	 * @return
+	 * Removes the node.
+	 *
+	 * @param Node the node
+	 * @return true, if successful
+	 * @throws IllegalArgumentException the illegal argument exception
 	 */
 	abstract public boolean removeNode(Node Node) throws IllegalArgumentException;
 
 	/**
-	 * Takes a Node node and String data Sets data for the node
-	 * 
-	 * @param node node to set data for
-	 * @param data data to set in node
-	 * 
+	 * Sets the node data.
+	 *
+	 * @param node the node
+	 * @param data the data
 	 */
 	public void setNodeData(Node node, String data)
 	{
@@ -67,10 +85,9 @@ public abstract class Plan implements Serializable// extends UnicastRemoteObject
 	}
 
 	/**
-	 * returns the root node
-	 * 
-	 * @return Node root node
-	 * 
+	 * Gets the root.
+	 *
+	 * @return the root
 	 */
 	public Node getRoot()
 	{
@@ -78,9 +95,9 @@ public abstract class Plan implements Serializable// extends UnicastRemoteObject
 	}
 
 	/**
-	 * returns a list of default node strings
-	 * 
-	 * @return ArrayList list of default node strings
+	 * Gets the list.
+	 *
+	 * @return the list
 	 */
 	public ArrayList<String> getList()
 	{
@@ -88,10 +105,9 @@ public abstract class Plan implements Serializable// extends UnicastRemoteObject
 	}
 
 	/**
-	 * returns a String name of plan
-	 * 
-	 * @return String strings of plan name
-	 * 
+	 * Gets the name.
+	 *
+	 * @return the name
 	 */
 	public String getName()
 	{
@@ -99,10 +115,9 @@ public abstract class Plan implements Serializable// extends UnicastRemoteObject
 	}
 
 	/**
-	 * Takes a String name and sets name of plan
-	 * 
-	 * @param name name to set as plan name
-	 * 
+	 * Sets the name.
+	 *
+	 * @param name the new name
 	 */
 	public void setName(String name)
 	{

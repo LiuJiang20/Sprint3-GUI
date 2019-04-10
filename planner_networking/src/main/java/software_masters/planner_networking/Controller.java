@@ -6,11 +6,24 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Controller.
+ */
+
 public class Controller
 {
-	Client client;
 	
+	/** The client. */
+	Client client;
 
+
+	/**
+	 * Instantiates a new controller.
+	 *
+	 * @throws RemoteException the remote exception
+	 * @throws NotBoundException the not bound exception
+	 */
 	public Controller() throws RemoteException, NotBoundException
 	{
 		String host = "10.14.1.82";
@@ -32,10 +45,33 @@ public class Controller
 			System.out.println("Current Plan file is : "+client.getCurrPlanFile());
 		
 	}
+	
+	/**
+	 * Gets the root node.
+	 *
+	 * @return the root node
+	 */
 	public Node getRootNode()
 	{
 		return client.getCurrPlanFile().getPlan().getRoot();
 	}
+	
+	/**
+	 * Gets the year.
+	 *
+	 * @return the year
+	 */
+	public String getYear()
+	{
+		return client.getCurrPlanFile().getYear();
+	}
+	
+	/**
+	 * Adds the node.
+	 *
+	 * @param parent the parent
+	 * @return the string
+	 */
 	public String addNode(Node parent)
 	{
 		try
@@ -50,6 +86,12 @@ public class Controller
 		return null;
 	}
 	
+	/**
+	 * Delete node.
+	 *
+	 * @param removedNode the removed node
+	 * @return the string
+	 */
 	public String deleteNode(Node removedNode)
 	{
 		try
@@ -63,6 +105,11 @@ public class Controller
 		return null;
 	}
 	
+	/**
+	 * Push to server.
+	 *
+	 * @return the string
+	 */
 	public String pushToServer()
 	{
 		try
@@ -75,11 +122,22 @@ public class Controller
 		}
 		return null;
 	}
+	
+	/**
+	 * Editable.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean editable()
 	{
 		return client.getCurrPlanFile().isCanEdit();
 	}
 	
+	/**
+	 * Register.
+	 *
+	 * @param observer the observer
+	 */
 	public void register(Observer observer)
 	{
 		client.register(observer);

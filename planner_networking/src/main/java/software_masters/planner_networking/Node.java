@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author Courtney and Jack
- * @author lee and wesley
+ * The Class Node.
  */
 
 public class Node implements Serializable
@@ -20,21 +20,30 @@ public class Node implements Serializable
 		return name ;
 	}
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 5908372020728915437L;
+	
+	/** The parent. */
 	private Node parent;
+	
+	/** The name. */
 	private String name;
+	
+	/** The data. */
 	private String data;
+	
+	/** The children. */
 	private ArrayList<Node> children = new ArrayList<Node>();
 
 	// constructor is data is not known
 	/**
-	 * Takes a Node parent, String name, String data, and list of children Sets
-	 * values in node
-	 * 
-	 * @param parent parent of node
-	 * @param name   name of node
-	 * @param data   data for node
-	 * @param child  list of children
+	 * Instantiates a new node.
+	 *
+	 * @param parent the parent
+	 * @param name the name
+	 * @param data the data
+	 * @param child the child
+	 * @throws RemoteException the remote exception
 	 */
 	public Node(Node parent, String name, String data, ArrayList<Node> child) throws RemoteException
 	{
@@ -44,6 +53,11 @@ public class Node implements Serializable
 
 	}
 
+	/**
+	 * Instantiates a new node.
+	 *
+	 * @throws RemoteException the remote exception
+	 */
 	// empty constructor for XML
 	public Node() throws RemoteException
 	{
@@ -52,9 +66,9 @@ public class Node implements Serializable
 
 	// Getter and setters
 	/**
-	 * returns a String name of node
-	 * 
-	 * @return String name of node
+	 * Gets the name.
+	 *
+	 * @return the name
 	 */
 	public String getName()
 	{
@@ -62,9 +76,9 @@ public class Node implements Serializable
 	}
 
 	/**
-	 * Sets name of node
-	 * 
-	 * @param name name to set as name of node
+	 * Sets the name.
+	 *
+	 * @param name the new name
 	 */
 	public void setName(String name)
 	{
@@ -72,9 +86,9 @@ public class Node implements Serializable
 	}
 
 	/**
-	 * Returns node's data
-	 * 
-	 * @return String data of node
+	 * Gets the data.
+	 *
+	 * @return the data
 	 */
 	public String getData()
 	{
@@ -82,9 +96,9 @@ public class Node implements Serializable
 	}
 
 	/**
-	 * Takes a String data and sets node's data
-	 * 
-	 * @param data data to set as data of node
+	 * Sets the data.
+	 *
+	 * @param data the new data
 	 */
 	public void setData(String data)
 	{
@@ -92,9 +106,9 @@ public class Node implements Serializable
 	}
 
 	/**
-	 * returns the parent node
-	 * 
-	 * @return Node parent of node
+	 * Gets the parent.
+	 *
+	 * @return the parent
 	 */
 	public Node getParent()
 	{
@@ -102,9 +116,9 @@ public class Node implements Serializable
 	}
 
 	/**
-	 * Takes a Node parent and sets the nodes parent
-	 * 
-	 * @param parent parent to set as parent of node
+	 * Sets the parent.
+	 *
+	 * @param parent the new parent
 	 */
 	public void setParent(Node parent)
 	{
@@ -112,9 +126,9 @@ public class Node implements Serializable
 	}
 
 	/**
-	 * Returns a list of children nodes
-	 * 
-	 * @return ArrayList list of children
+	 * Gets the children.
+	 *
+	 * @return the children
 	 */
 	public ArrayList<Node> getChildren()
 	{
@@ -125,9 +139,9 @@ public class Node implements Serializable
 
 	// add a Node child to another node
 	/**
-	 * Takes a node child and adds child to child list
-	 * 
-	 * @param child child to be added to this node
+	 * Adds the child.
+	 *
+	 * @param child the child
 	 */
 	public void addChild(Node child)
 	{
@@ -136,7 +150,9 @@ public class Node implements Serializable
 
 	// remove child node from a node's children list
 	/**
-	 * @param child child to be removed from this node
+	 * Removes the child.
+	 *
+	 * @param child the child
 	 */
 	public void removeChild(Node child)
 	{

@@ -6,30 +6,31 @@ package software_masters.planner_networking;
 import java.util.Enumeration;
 import java.util.concurrent.ConcurrentHashMap;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author lee.kendall
- * @author wesley murray
+ * The Class Department.
  */
 
 public class Department
 {
 
-	/**
-	 * Object which stores the planFiles of a particular department based on year
-	 */
+	/** The plan file map. */
 	private ConcurrentHashMap<String, PlanFile> planFileMap;
 
+	/**
+	 * Instantiates a new department.
+	 */
 	public Department()
 	{
 		planFileMap = new ConcurrentHashMap<String, PlanFile>();
 	}
 
 	/**
-	 * Retrieves planFile from department based on year
-	 * 
-	 * @param year
-	 * @return plan corresponding to the passed year
-	 * @throws IllegalArgumentException
+	 * Gets the plan.
+	 *
+	 * @param year the year
+	 * @return the plan
+	 * @throws IllegalArgumentException the illegal argument exception
 	 */
 	public PlanFile getPlan(String year) throws IllegalArgumentException
 	{
@@ -41,11 +42,10 @@ public class Department
 	}
 
 	/**
-	 * Adds new planFile to department hash with a corresponding year. Overwrites
-	 * old planFile if a planFile with the passed year already exists.
-	 * 
-	 * @param year of planFile to be added
-	 * @param plan
+	 * Adds the plan.
+	 *
+	 * @param year the year
+	 * @param plan the plan
 	 */
 	public void addPlan(String year, PlanFile plan)
 	{
@@ -53,8 +53,9 @@ public class Department
 	}
 
 	/**
-	 * Removes planFile from department hash given a year
-	 * @param year of planFile to be removed
+	 * Removes the plan.
+	 *
+	 * @param year the year
 	 */
 	public void removePlan(String year)
 	{
@@ -62,9 +63,10 @@ public class Department
 	}
 
 	/**
-	 * Checks if the plan exists within this department
-	 * @param year
-	 * @return
+	 * Contains plan.
+	 *
+	 * @param year the year
+	 * @return true, if successful
 	 */
 	public boolean containsPlan(String year)
 	{
@@ -72,7 +74,9 @@ public class Department
 	}
 
 	/**
-	 * @return the planFileMap
+	 * Gets the plan file map.
+	 *
+	 * @return the plan file map
 	 */
 	public ConcurrentHashMap<String, PlanFile> getPlanFileMap()
 	{
@@ -80,7 +84,9 @@ public class Department
 	}
 
 	/**
-	 * @param planFileMap the planFileMap to set
+	 * Sets the plan file map.
+	 *
+	 * @param planFileMap the plan file map
 	 */
 	public void setPlanFileMap(ConcurrentHashMap<String, PlanFile> planFileMap)
 	{
@@ -125,6 +131,15 @@ public class Department
 		return true;
 	}
 
+	/**
+	 * Hashes equal.
+	 *
+	 * @param <K> the key type
+	 * @param <V> the value type
+	 * @param map1 the map 1
+	 * @param map2 the map 2
+	 * @return true, if successful
+	 */
 	private static <K, V> boolean hashesEqual(ConcurrentHashMap<K, V> map1, ConcurrentHashMap<K, V> map2)
 	{
 		for (Enumeration<K> keyList = map1.keys(); keyList.hasMoreElements();)

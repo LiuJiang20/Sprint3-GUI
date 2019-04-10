@@ -8,23 +8,43 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ErrorMessage.
+ * This class helps to report any error messages when make operations on the planfile
+	It also handles to warn user the planfile is read-only
+ */
+
 public class ErrorMessage
 {
 
+	/** The erro message. */
 	String erroMessage;
+	
+	/** The title. */
 	String title = "Error message";
+	
+	/** The stage. */
 	Stage stage;
 	
+	/**
+	 * Instantiates a new error message.
+	 *
+	 * @param erroMessage the error message
+	 */
 	public ErrorMessage(String erroMessage)
 	{
 		this.erroMessage = erroMessage;
 	}
 
+	/**
+	 * Show.
+	 */
 	public void show()
 	{
 		stage = new Stage();
 		stage.initModality(Modality.APPLICATION_MODAL);
-		stage.setTitle(title);
+		//stage.setTitle(title);
 		stage.setMinWidth(250);
 		
 		Label label = new Label(erroMessage);

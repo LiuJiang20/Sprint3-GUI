@@ -6,9 +6,18 @@ import java.rmi.RemoteException;
 
 import org.junit.Test;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class NodeTest.
+ */
 public class NodeTest
 {
 
+	/**
+	 * Test.
+	 *
+	 * @throws RemoteException the remote exception
+	 */
 	@Test
 	public void test() throws RemoteException
 	{

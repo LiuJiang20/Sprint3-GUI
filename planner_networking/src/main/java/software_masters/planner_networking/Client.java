@@ -3,28 +3,33 @@ package software_masters.planner_networking;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author lee kendall and wesley murray
+ * The Class Client.
  */
 
 public class Client
 {
 
-	/**
-	 * This class represents the client which users interact with. It includes
-	 * methods for retrieving and editing business plans, keeping track of the
-	 * user's cookie after login.
-	 * 
-	 */
+	/** The cookie. */
 	private String cookie;
+	
+	/** The curr plan file. */
 	private PlanFile currPlanFile;
+	
+	/** The curr node. */
 	private Node currNode;
+	
+	/** The server. */
 	private Server server;
+	
+	/** The observers. */
 	private ArrayList<Observer> observers;
+	
 	/**
-	 * Sets the client's server.
-	 * 
-	 * @param server
+	 * Instantiates a new client.
+	 *
+	 * @param server the server
 	 */
 	public Client(Server server)
 	{
@@ -33,12 +38,12 @@ public class Client
 	}
 
 	/**
-	 * Logs in, returns cookie
-	 * 
-	 * @param username
-	 * @param password
-	 * @return
-	 * @throws IllegalArgumentException
+	 * Login.
+	 *
+	 * @param username the username
+	 * @param password the password
+	 * @throws IllegalArgumentException the illegal argument exception
+	 * @throws RemoteException the remote exception
 	 */
 	public void login(String username, String password) throws IllegalArgumentException, RemoteException
 	{
@@ -48,12 +53,12 @@ public class Client
 	}
 
 	/**
-	 * Returns planFile object from the user's department given a year. Throws
-	 * exception if that planFile doesn't exist.
-	 * 
-	 * @param year
-	 * @return
-	 * @throws IllegalArgumentException
+	 * Gets the plan.
+	 *
+	 * @param year the year
+	 * @return the plan
+	 * @throws IllegalArgumentException the illegal argument exception
+	 * @throws RemoteException the remote exception
 	 */
 	public void getPlan(String year) throws IllegalArgumentException, RemoteException
 	{
@@ -62,13 +67,12 @@ public class Client
 	}
 
 	/**
-	 * 
-	 * Returns a blank plan outline given a name. Throws exception if the plan
-	 * outline doesn't exist.
-	 * 
-	 * @param name
-	 * @return
-	 * @throws IllegalArgumentException
+	 * Gets the plan outline.
+	 *
+	 * @param name the name
+	 * @return the plan outline
+	 * @throws IllegalArgumentException the illegal argument exception
+	 * @throws RemoteException the remote exception
 	 */
 	public void getPlanOutline(String name) throws IllegalArgumentException, RemoteException
 	{
@@ -76,6 +80,11 @@ public class Client
 		this.currNode = this.currPlanFile.getPlan().getRoot();
 	}
 
+	/**
+	 * Gets the all years.
+	 *
+	 * @return the all years
+	 */
 	public ArrayList<String> getAllYears()
 	{
 		try
@@ -88,13 +97,13 @@ public class Client
 		}
 		return null;
 	}
+	
 	/**
-	 * Saves planFile to the user's department if that planFile is marked as
-	 * editable. If not editable, an exception is thrown. An exception is also
-	 * thrown if a newly created planFile is not assigned a year.
-	 * 
-	 * @param plan
-	 * @throws IllegalArgumentException
+	 * Push plan.
+	 *
+	 * @param plan the plan
+	 * @throws IllegalArgumentException the illegal argument exception
+	 * @throws RemoteException the remote exception
 	 */
 	public void pushPlan(PlanFile plan) throws IllegalArgumentException, RemoteException
 	{
@@ -102,15 +111,14 @@ public class Client
 	}
 
 	/**
-	 * Adds new user to loginMap, generates new cookie for user and adds to
-	 * cookieMap. Throws exception if user isn't an admin or the department doesn't
-	 * exist.
-	 * 
-	 * @param username
-	 * @param password
-	 * @param departmentName
-	 * @param isAdmin
-	 * @throws IllegalArgumentException
+	 * Adds the user.
+	 *
+	 * @param username the username
+	 * @param password the password
+	 * @param departmentName the department name
+	 * @param isAdmin the is admin
+	 * @throws IllegalArgumentException the illegal argument exception
+	 * @throws RemoteException the remote exception
 	 */
 	public void addUser(String username, String password, String departmentName, boolean isAdmin)
 			throws IllegalArgumentException, RemoteException
@@ -119,12 +127,13 @@ public class Client
 	}
 
 	/**
-	 * Sets whether or not a planFile is editable
-	 * 
-	 * @param departmentName
-	 * @param year
-	 * @param canEdit
-	 * @throws IllegalArgumentException
+	 * Flag plan.
+	 *
+	 * @param departmentName the department name
+	 * @param year the year
+	 * @param canEdit the can edit
+	 * @throws IllegalArgumentException the illegal argument exception
+	 * @throws RemoteException the remote exception
 	 */
 	public void flagPlan(String departmentName, String year, boolean canEdit)
 			throws IllegalArgumentException, RemoteException
@@ -134,10 +143,11 @@ public class Client
 	}
 
 	/**
-	 * Adds a new department
-	 * 
-	 * @param departmentName
-	 * @throws IllegalArgumentException
+	 * Adds the department.
+	 *
+	 * @param departmentName the department name
+	 * @throws IllegalArgumentException the illegal argument exception
+	 * @throws RemoteException the remote exception
 	 */
 	public void addDepartment(String departmentName) throws IllegalArgumentException, RemoteException
 	{
@@ -146,10 +156,10 @@ public class Client
 	}
 
 	/**
-	 * Adds a new branch to the business plan tree if allowed
-	 * 
-	 * @throws IllegalArgumentException
-	 * @throws RemoteException
+	 * Adds the branch.
+	 *
+	 * @throws IllegalArgumentException the illegal argument exception
+	 * @throws RemoteException the remote exception
 	 */
 	public void addBranch() throws IllegalArgumentException, RemoteException
 	{
@@ -157,9 +167,9 @@ public class Client
 	}
 
 	/**
-	 * Removes a branch from the business plan tree if at least one duplicate exists
-	 * 
-	 * @throws IllegalArgumentException
+	 * Removes the branch.
+	 *
+	 * @throws IllegalArgumentException the illegal argument exception
 	 */
 	public void removeBranch() throws IllegalArgumentException
 	{
@@ -169,9 +179,9 @@ public class Client
 	}
 
 	/**
-	 * Sets the data held in the currently accessed node
-	 * 
-	 * @param data
+	 * Edits the data.
+	 *
+	 * @param data the data
 	 */
 	public void editData(String data)
 	{
@@ -179,7 +189,9 @@ public class Client
 	}
 
 	/**
-	 * @return the data associated with a node
+	 * Gets the data.
+	 *
+	 * @return the data
 	 */
 	public String getData()
 	{
@@ -187,7 +199,9 @@ public class Client
 	}
 
 	/**
-	 * @param year
+	 * Sets the year.
+	 *
+	 * @param year the new year
 	 */
 	public void setYear(String year)
 	{
@@ -195,6 +209,8 @@ public class Client
 	}
 
 	/**
+	 * Gets the cookie.
+	 *
 	 * @return the cookie
 	 */
 	public String getCookie()
@@ -203,7 +219,9 @@ public class Client
 	}
 
 	/**
-	 * @param cookie the cookie to set
+	 * Sets the cookie.
+	 *
+	 * @param cookie the new cookie
 	 */
 	public void setCookie(String cookie)
 	{
@@ -211,7 +229,9 @@ public class Client
 	}
 
 	/**
-	 * @return the currPlanFile
+	 * Gets the curr plan file.
+	 *
+	 * @return the curr plan file
 	 */
 	public PlanFile getCurrPlanFile()
 	{
@@ -219,7 +239,9 @@ public class Client
 	}
 
 	/**
-	 * @param currPlanFile the currPlanFile to set
+	 * Sets the curr plan file.
+	 *
+	 * @param currPlanFile the new curr plan file
 	 */
 	public void setCurrPlanFile(PlanFile currPlanFile)
 	{
@@ -227,7 +249,9 @@ public class Client
 	}
 
 	/**
-	 * @return the currNode
+	 * Gets the curr node.
+	 *
+	 * @return the curr node
 	 */
 	public Node getCurrNode()
 	{
@@ -235,7 +259,9 @@ public class Client
 	}
 
 	/**
-	 * @param currNode the currNode to set
+	 * Sets the curr node.
+	 *
+	 * @param currNode the new curr node
 	 */
 	public void setCurrNode(Node currNode)
 	{
@@ -243,6 +269,8 @@ public class Client
 	}
 
 	/**
+	 * Gets the server.
+	 *
 	 * @return the server
 	 */
 	public Server getServer()
@@ -251,13 +279,21 @@ public class Client
 	}
 
 	/**
-	 * @param server the server to set
+	 * Sets the server.
+	 *
+	 * @param server the new server
 	 */
 	public void setServer(Server server)
 	{
 		this.server = server;
 	}
 	
+	/**
+	 * Register.
+	 *
+	 * @param observer the observer
+	 * @return true, if successful
+	 */
 	public boolean register(Observer observer)
 	{
 		if (observer == null)
@@ -268,12 +304,21 @@ public class Client
 		return true;
 	}
 	
+	/**
+	 * Deregistry.
+	 *
+	 * @param observer the observer
+	 * @return true, if successful
+	 */
 	public boolean deregistry(Observer observer)
 	{
 		return observers.remove(observer);
 	}
 	
 	
+	/**
+	 * Notify observers.
+	 */
 	public void notifyObservers()
 	{
 		for (Observer observer : observers)

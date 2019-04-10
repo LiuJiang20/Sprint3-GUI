@@ -2,16 +2,20 @@ package software_masters.planner_networking;
 
 import java.rmi.RemoteException;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author Courtney and Jack
- * @author wesley and lee.
+ * The Class Centre.
  */
 public class Centre extends Plan
 {
+	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 8094008350302564337L;
 
 	/**
-	 * @throws RemoteException
+	 * Instantiates a new centre.
+	 *
+	 * @throws RemoteException the remote exception
 	 */
 	public Centre() throws RemoteException
 	{
@@ -33,12 +37,8 @@ public class Centre extends Plan
 		this.getList().add("Results");
 	}
 
-	/**
-	 * Take a Node parent and adds the required children and returns a boolean true
-	 * if added
-	 * 
-	 * @param parent parent of node that needs to be added
-	 * @return boolean true if added
+	/* (non-Javadoc)
+	 * @see software_masters.planner_networking.Plan#addNode(software_masters.planner_networking.Node)
 	 */
 	public boolean addNode(Node parent) throws RemoteException, IllegalArgumentException
 	{
@@ -63,11 +63,8 @@ public class Centre extends Plan
 	// remove a node if it is allowed to be removed
 	// cannot be removed if it is the only child of its parent
 	// or if it is the root node
-	/**
-	 * Takes a Node nodeRemove and returns a boolean true is removed
-	 * 
-	 * @param nodeRemove node to be removed
-	 * @return boolean true if removed
+	/* (non-Javadoc)
+	 * @see software_masters.planner_networking.Plan#removeNode(software_masters.planner_networking.Node)
 	 */
 	public boolean removeNode(Node nodeRemove) throws IllegalArgumentException
 	{

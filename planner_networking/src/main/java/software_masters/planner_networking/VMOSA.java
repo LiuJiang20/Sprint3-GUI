@@ -2,16 +2,20 @@ package software_masters.planner_networking;
 
 import java.rmi.RemoteException;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author Courtney and Jack
- * @author wesley and lee.
+ * The Class VMOSA.
  */
 public class VMOSA extends Plan
 {
+	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 8514352878071159404L;
 
 	/**
-	 * @throws RemoteException
+	 * Instantiates a new vmosa.
+	 *
+	 * @throws RemoteException the remote exception
 	 */
 	public VMOSA() throws RemoteException
 	{
@@ -33,12 +37,8 @@ public class VMOSA extends Plan
 		this.getList().add("Assessment");
 	}
 
-	/**
-	 * Takes a Node parent and returns a boolean True if added
-	 * 
-	 * @param parent parent node of node that needs to be added
-	 * @return boolean true if added
-	 * @throws RemoteException
+	/* (non-Javadoc)
+	 * @see software_masters.planner_networking.Plan#addNode(software_masters.planner_networking.Node)
 	 */
 	public boolean addNode(Node parent) throws RemoteException, IllegalArgumentException
 	{
@@ -61,11 +61,8 @@ public class VMOSA extends Plan
 		}
 	}
 
-	/**
-	 * Takes a Node nodeRemove and returns a boolean true if added
-	 * 
-	 * @param nodeRemove node to be removed
-	 * @return boolean true is removed
+	/* (non-Javadoc)
+	 * @see software_masters.planner_networking.Plan#removeNode(software_masters.planner_networking.Node)
 	 */
 	public boolean removeNode(Node nodeRemove) throws IllegalArgumentException
 

@@ -16,31 +16,30 @@ import java.util.Enumeration;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author Lee Kendall
- * @author Wesley Murray
- * 
- *         This class is the server for our business planner application
- *
- *         initialized with two accounts - an Admin(Username: admin, password:
- *         admin, cookie: 0) and a normal user (Username: user, password: user,
- *         cookie: 1) initialized with one department - (name: default) The
- *         default department has a default plan file - (year: "2019", candEdit:
- *         true, Plan Centre_Plan_1) planTemplateMap is initialized with VMOSA
- *         and Centre
+ * The Class ServerImplementation.
  */
 
 public class ServerImplementation implements Server
 {
 
+	/** The login map. */
 	private ConcurrentHashMap<String, Account> loginMap = new ConcurrentHashMap<String, Account>();
+	
+	/** The cookie map. */
 	private ConcurrentHashMap<String, Account> cookieMap = new ConcurrentHashMap<String, Account>();
+	
+	/** The department map. */
 	private ConcurrentHashMap<String, Department> departmentMap = new ConcurrentHashMap<String, Department>();
+	
+	/** The plan template map. */
 	private ConcurrentHashMap<String, PlanFile> planTemplateMap = new ConcurrentHashMap<String, PlanFile>();
 
 	/**
-	 * Initializes server with default objects listed above for testing
-	 * 
+	 * Instantiates a new server implementation.
+	 *
+	 * @throws RemoteException the remote exception
 	 */
 	public ServerImplementation() throws RemoteException
 	{
@@ -210,10 +209,9 @@ public class ServerImplementation implements Server
 	}
 
 	/**
-	 * Helper method to randomly generate a 25-character cookie. This method
-	 * regenerates a cookie if it already exists in the cookieMap.
-	 * 
-	 * @return String cookie
+	 * Cookie maker.
+	 *
+	 * @return the string
 	 */
 	private String cookieMaker()
 	{
@@ -297,10 +295,10 @@ public class ServerImplementation implements Server
 	}
 
 	/**
-	 * Loads server from xml, called in main
-	 * 
-	 * @return
-	 * @throws FileNotFoundException
+	 * Load.
+	 *
+	 * @return the server implementation
+	 * @throws FileNotFoundException the file not found exception
 	 */
 	public static ServerImplementation load() throws FileNotFoundException
 	{
@@ -335,10 +333,9 @@ public class ServerImplementation implements Server
 	}
 
 	/**
-	 * Checks that the client is logged in with a valid cookie
-	 * 
-	 * @param cookie
-	 * @throws IllegalArgumentException
+	 * Cookie checker.
+	 *
+	 * @param cookie the cookie
 	 */
 	private void cookieChecker(String cookie)
 	{
@@ -351,10 +348,9 @@ public class ServerImplementation implements Server
 	}
 
 	/**
-	 * Checks that the user is an admin
-	 * 
-	 * @param cookie
-	 * @throws IllegalArgumentException
+	 * Admin checker.
+	 *
+	 * @param cookie the cookie
 	 */
 	private void adminChecker(String cookie)
 	{
@@ -365,10 +361,9 @@ public class ServerImplementation implements Server
 	}
 
 	/**
-	 * Checks department is valid
-	 * 
-	 * @param name
-	 * @throws IllegalArgumentException
+	 * Department checker.
+	 *
+	 * @param name the name
 	 */
 	private void departmentChecker(String name)
 	{
@@ -520,11 +515,13 @@ public class ServerImplementation implements Server
 	}
 
 	/**
-	 * Compares two hashes for testing
-	 * 
-	 * @param map1
-	 * @param map2
-	 * @return
+	 * Hashes equal.
+	 *
+	 * @param <K> the key type
+	 * @param <V> the value type
+	 * @param map1 the map 1
+	 * @param map2 the map 2
+	 * @return true, if successful
 	 */
 	private static <K, V> boolean hashesEqual(ConcurrentHashMap<K, V> map1, ConcurrentHashMap<K, V> map2)
 	{
@@ -542,10 +539,10 @@ public class ServerImplementation implements Server
 	}
 
 	/**
-	 * Starts the server, allows clients to access it
-	 * 
-	 * @param args
-	 * @throws RemoteException
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 * @throws RemoteException the remote exception
 	 */
 	public static void main(String[] args) throws RemoteException
 	{

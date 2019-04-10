@@ -3,25 +3,27 @@
  */
 package software_masters.planner_networking;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author lee kendall
- * @author wesley murray
- *
+ * The Class Account.
  */
 public class Account
 {
 
-	/**
-	 * Object keeps track of each user's password, cookie, department, and admin
-	 * state.
-	 */
+	/** The password. */
 	private String password;
+	
+	/** The cookie. */
 	private String cookie;
+	
+	/** The department. */
 	private Department department;
+	
+	/** The is admin. */
 	private boolean isAdmin;
 
 	/**
-	 * Default constructor for serialization
+	 * Instantiates a new account.
 	 */
 	public Account()
 	{
@@ -32,10 +34,12 @@ public class Account
 	}
 
 	/**
-	 * @param password
-	 * @param cookie
-	 * @param department
-	 * @param isAdmin
+	 * Instantiates a new account.
+	 *
+	 * @param password the password
+	 * @param cookie the cookie
+	 * @param department the department
+	 * @param isAdmin the is admin
 	 */
 	public Account(String password, String cookie, Department department, boolean isAdmin)
 	{
@@ -46,13 +50,11 @@ public class Account
 	}
 
 	/**
-	 * Checks if the passed password string corresponds to the account's password,
-	 * and returns the account's cookie during login. If the password is invalid, an
-	 * exception is thrown.
-	 * 
-	 * @param password
-	 * @return String cookie
-	 * @throws IllegalArgumentException
+	 * Test credentials.
+	 *
+	 * @param password the password
+	 * @return the string
+	 * @throws IllegalArgumentException the illegal argument exception
 	 */
 	public String testCredentials(String password) throws IllegalArgumentException // returns cookie
 	{
@@ -64,6 +66,8 @@ public class Account
 	}
 
 	/**
+	 * Gets the password.
+	 *
 	 * @return the password
 	 */
 	public String getPassword()
@@ -72,7 +76,9 @@ public class Account
 	}
 
 	/**
-	 * @param password the password to set
+	 * Sets the password.
+	 *
+	 * @param password the new password
 	 */
 	public void setPassword(String password)
 	{
@@ -80,6 +86,8 @@ public class Account
 	}
 
 	/**
+	 * Gets the cookie.
+	 *
 	 * @return the cookie
 	 */
 	public String getCookie()
@@ -88,7 +96,9 @@ public class Account
 	}
 
 	/**
-	 * @param cookie the cookie to set
+	 * Sets the cookie.
+	 *
+	 * @param cookie the new cookie
 	 */
 	public void setCookie(String cookie)
 	{
@@ -96,6 +106,8 @@ public class Account
 	}
 
 	/**
+	 * Gets the department.
+	 *
 	 * @return the department
 	 */
 	public Department getDepartment()
@@ -104,7 +116,9 @@ public class Account
 	}
 
 	/**
-	 * @param department the department to set
+	 * Sets the department.
+	 *
+	 * @param department the new department
 	 */
 	public void setDepartment(Department department)
 	{
@@ -112,7 +126,9 @@ public class Account
 	}
 
 	/**
-	 * @return the isAdmin
+	 * Checks if is admin.
+	 *
+	 * @return true, if is admin
 	 */
 	public boolean isAdmin()
 	{
@@ -120,7 +136,9 @@ public class Account
 	}
 
 	/**
-	 * @param isAdmin the isAdmin to set
+	 * Sets the admin.
+	 *
+	 * @param isAdmin the new admin
 	 */
 	public void setAdmin(boolean isAdmin)
 	{

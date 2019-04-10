@@ -2,17 +2,20 @@ package software_masters.planner_networking;
 
 import java.rmi.RemoteException;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author Courtney and Jack
- * @author wesley and lee.
+ * The Class IowaState.
  */
 public class IowaState extends Plan
 {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 3096239674948462908L;
 
 	/**
-	 * @throws RemoteException
+	 * Instantiates a new iowa state.
+	 *
+	 * @throws RemoteException the remote exception
 	 */
 	public IowaState() throws RemoteException
 	{
@@ -37,11 +40,8 @@ public class IowaState extends Plan
 		this.getList().add("Assessment");
 	}
 
-	/**
-	 * Takes a Node parent and returns a boolean true if added
-	 * 
-	 * @param parent parent of node to be added
-	 * @return boolean true if added
+	/* (non-Javadoc)
+	 * @see software_masters.planner_networking.Plan#addNode(software_masters.planner_networking.Node)
 	 */
 	public boolean addNode(Node parent) throws RemoteException, IllegalArgumentException
 	{
@@ -64,12 +64,8 @@ public class IowaState extends Plan
 		}
 	}
 
-	/**
-	 * Takes a Node nodeRemove and returns a boolean true if removed
-	 * 
-	 * @param nodeRemove node to be removed
-	 * @return boolean true if removed
-	 * 
+	/* (non-Javadoc)
+	 * @see software_masters.planner_networking.Plan#removeNode(software_masters.planner_networking.Node)
 	 */
 	public boolean removeNode(Node nodeRemove) throws IllegalArgumentException
 	{

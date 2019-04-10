@@ -11,13 +11,32 @@ import javafx.scene.layout.Region;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ConfirmationBox.
+ */
+
 public class ConfirmationBox
 {
+	
+	/** The confirmed. */
 	public boolean confirmed;
+	
+	/** The stage. */
 	Stage stage;
+	
+	/** The title. */
 	String title;
+	
+	/** The message. */
 	String message;
 	
+	/**
+	 * Instantiates a new confirmation box.
+	 *
+	 * @param message the message
+	 * @param title the title
+	 */
 	public ConfirmationBox(String message, String title )
 	{
 		super();
@@ -25,11 +44,16 @@ public class ConfirmationBox
 		this.message = message;
 	}
 
+	
+	
+	/**
+	 * Show.
+	 */
 	public void show()
 	{
 		stage = new Stage();
 		stage.initModality(Modality.APPLICATION_MODAL);
-		stage.setTitle(title);
+		//stage.setTitle(title);
 		stage.setMinWidth(250);
 		
 		Label warningLabel = new Label();
@@ -71,12 +95,18 @@ public class ConfirmationBox
 		stage.showAndWait();
 	}
 	
+	/**
+	 * Ok button action.
+	 */
 	protected void okButtonAction()
 	{
 		stage.close();
 		confirmed = true;
 	}
 	
+	/**
+	 * No button action.
+	 */
 	protected void noButtonAction()
 	{
 		stage.close();

@@ -12,32 +12,29 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author lee Kendall
- * @author Wes Murray
- *
- *         Verifies that client methods work correctly.
+ * The Class LocalClientTest.
  */
 public class LocalClientTest
 {
 
-	/**
-	 * The server is initialized with two accounts - an Admin(Username: admin,
-	 * password: admin, cookie: 0) and a normal user (Username: user, password:
-	 * user, cookie: 1) The server is initialized with one department - (name:
-	 * default) The default department has a default plan file - (year: "2019",
-	 * candEdit: true, Plan Centre_Plan_1) planTemplateMap is initialized with VMOSA
-	 * and Centre templates
-	 */
+	/** The test server. */
 	static Server testServer;
+	
+	/** The test client. */
 	static Client testClient;
+	
+	/** The actual server. */
 	static Server actualServer;
+	
+	/** The registry. */
 	static Registry registry;
 
 	/**
-	 * @throws Exception Sets up RMI registry, ensures that a server is pulled from
-	 *                   the registry, and sets up a client. The server and client
-	 *                   are used for subsequent tests.
+	 * Sets the up before class.
+	 *
+	 * @throws Exception the exception
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception
@@ -60,6 +57,11 @@ public class LocalClientTest
 
 	}
 
+	/**
+	 * Tear down after class.
+	 *
+	 * @throws Exception the exception
+	 */
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception
 	{
@@ -70,11 +72,10 @@ public class LocalClientTest
 	}
 
 	/**
-	 * Verifies that the login method works by returning a valid cookie from a valid
-	 * login.
-	 * 
-	 * @throws RemoteException
-	 * @throws IllegalArgumentException
+	 * Test login.
+	 *
+	 * @throws IllegalArgumentException the illegal argument exception
+	 * @throws RemoteException the remote exception
 	 */
 	@Test
 	public void testLogin() throws IllegalArgumentException, RemoteException
@@ -93,11 +94,10 @@ public class LocalClientTest
 	}
 
 	/**
-	 * Verifies addUser method works and that only admins can call it
-	 * 
-	 * @throws RemoteException
-	 * @throws IllegalArgumentException
-	 * 
+	 * Test add user.
+	 *
+	 * @throws IllegalArgumentException the illegal argument exception
+	 * @throws RemoteException the remote exception
 	 */
 	@Test
 	public void testAddUser() throws IllegalArgumentException, RemoteException
@@ -126,10 +126,10 @@ public class LocalClientTest
 	}
 
 	/**
-	 * Verifies addDepartment method works and that only admins can call it
-	 * 
-	 * @throws RemoteException
-	 * @throws IllegalArgumentException
+	 * Test add department.
+	 *
+	 * @throws IllegalArgumentException the illegal argument exception
+	 * @throws RemoteException the remote exception
 	 */
 	@Test
 	public void testAddDepartment() throws IllegalArgumentException, RemoteException
@@ -149,10 +149,10 @@ public class LocalClientTest
 	}
 
 	/**
-	 * This method verifies that only admins can flag a plan as editable.
-	 * 
-	 * @throws RemoteException
-	 * @throws IllegalArgumentException
+	 * Test flag plan.
+	 *
+	 * @throws IllegalArgumentException the illegal argument exception
+	 * @throws RemoteException the remote exception
 	 */
 	@Test
 	public void testFlagPlan() throws IllegalArgumentException, RemoteException
@@ -174,11 +174,10 @@ public class LocalClientTest
 	}
 
 	/**
-	 * This method verifies that the client can retrieve plans that exist. Throws
-	 * exception if plan does not exist.
-	 * 
-	 * @throws RemoteException
-	 * @throws IllegalArgumentException
+	 * Test get plan.
+	 *
+	 * @throws IllegalArgumentException the illegal argument exception
+	 * @throws RemoteException the remote exception
 	 */
 	@Test
 	public void testGetPlan() throws IllegalArgumentException, RemoteException
@@ -194,10 +193,9 @@ public class LocalClientTest
 	}
 
 	/**
-	 * This method verifies that the client can retrieve plan outlines that exist.
-	 * Throws exception if plan outline does not exist.
-	 * 
-	 * @throws RemoteException
+	 * Test get plan outline.
+	 *
+	 * @throws RemoteException the remote exception
 	 */
 	@Test
 	public void testGetPlanOutline() throws RemoteException
@@ -218,11 +216,10 @@ public class LocalClientTest
 	}
 
 	/**
-	 * Verifies the client can push plans if and only if the planfile flag canEdit
-	 * is true.
-	 * 
-	 * @throws RemoteException
-	 * @throws IllegalArgumentException
+	 * Testpush plan.
+	 *
+	 * @throws IllegalArgumentException the illegal argument exception
+	 * @throws RemoteException the remote exception
 	 */
 	@Test
 	public void testpushPlan() throws IllegalArgumentException, RemoteException
@@ -254,12 +251,10 @@ public class LocalClientTest
 	}
 
 	/**
-	 * verifies client can add a branch to plan only if the root of that branch is
-	 * allowed to be copied.
-	 * 
-	 * @throws RemoteException
-	 * @throws IllegalArgumentException
-	 * 
+	 * Test add branch.
+	 *
+	 * @throws IllegalArgumentException the illegal argument exception
+	 * @throws RemoteException the remote exception
 	 */
 	@Test
 	public void testAddBranch() throws IllegalArgumentException, RemoteException
@@ -303,11 +298,10 @@ public class LocalClientTest
 	}
 
 	/**
-	 * This is a helper method. It tests that a branch is added to plan. It also
-	 * verifies that the new branch is a deep copy of the original branch
-	 * 
-	 * @throws RemoteException
-	 * @throws IllegalArgumentException
+	 * Test branch copy.
+	 *
+	 * @throws IllegalArgumentException the illegal argument exception
+	 * @throws RemoteException the remote exception
 	 */
 	private void testBranchCopy() throws IllegalArgumentException, RemoteException
 	{
@@ -320,11 +314,10 @@ public class LocalClientTest
 	}
 
 	/**
-	 * This method verifies that the centre template enforces remove branch
-	 * constraints. Cannot remove node if only one exists.
-	 * 
-	 * @throws RemoteException
-	 * @throws IllegalArgumentException
+	 * Test centre remove branch.
+	 *
+	 * @throws IllegalArgumentException the illegal argument exception
+	 * @throws RemoteException the remote exception
 	 */
 	@Test
 	public void testCentreRemoveBranch() throws IllegalArgumentException, RemoteException
@@ -349,10 +342,9 @@ public class LocalClientTest
 	}
 
 	/**
-	 * This method verifies that the VMOSA template enforces remove branch
-	 * constraints. Cannot remove node if only one exists.
-	 * 
-	 * @throws RemoteException
+	 * Test VMOSA remove branch.
+	 *
+	 * @throws RemoteException the remote exception
 	 */
 	@Test
 	public void testVMOSARemoveBranch() throws RemoteException
@@ -377,10 +369,9 @@ public class LocalClientTest
 	}
 
 	/**
-	 * This method verifies that the Iowa template enforces remove branch
-	 * constraints. Cannot remove node if only one exists.
-	 * 
-	 * @throws RemoteException
+	 * Test iowa remove branch.
+	 *
+	 * @throws RemoteException the remote exception
 	 */
 	@Test
 	public void testIowaRemoveBranch() throws RemoteException

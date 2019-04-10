@@ -6,149 +6,182 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author lee.kendall
- * @author wesley murray
+ * The Interface Server.
  */
 
 public interface Server extends Remote
 {
 
 	/**
-	 * 
-	 * Returns cookie associated with a particular account when the client logs in.
-	 * Throws exception if the username is invalid.
-	 * 
-	 * @param username
-	 * @param password
-	 * @return
-	 * @throws IllegalArgumentException
+	 * Log in.
+	 *
+	 * @param username the username
+	 * @param password the password
+	 * @return the string
+	 * @throws IllegalArgumentException the illegal argument exception
+	 * @throws RemoteException the remote exception
 	 */
 	String logIn(String username, String password) throws IllegalArgumentException, RemoteException;
 
 	/**
-	 * Returns planFile object from the user's department given a year. Throws
-	 * exception if that planFile doesn't exist.
-	 * 
-	 * @param year
-	 * @param cookie
-	 * @return
-	 * @throws IllegalArgumentException
+	 * Gets the plan.
+	 *
+	 * @param year the year
+	 * @param cookie the cookie
+	 * @return the plan
+	 * @throws IllegalArgumentException the illegal argument exception
+	 * @throws RemoteException the remote exception
 	 */
 	PlanFile getPlan(String year, String cookie) throws IllegalArgumentException, RemoteException;
 
 	/**
-	 * Returns a blank plan outline given a name. Throws exception if the plan
-	 * outline doesn't exist.
-	 * 
-	 * @param name
-	 * @param cookie
-	 * @return
-	 * @throws IllegalArgumentException
+	 * Gets the plan outline.
+	 *
+	 * @param name the name
+	 * @param cookie the cookie
+	 * @return the plan outline
+	 * @throws IllegalArgumentException the illegal argument exception
+	 * @throws RemoteException the remote exception
 	 */
 	PlanFile getPlanOutline(String name, String cookie) throws IllegalArgumentException, RemoteException;
 
 	
-	ArrayList<String> getAllYears(String cookie)throws IllegalArgumentException, RemoteException;
 	/**
-	 * Saves planFile to the user's department if that planFile is marked as
-	 * editable. If not editable, an exception is thrown. An exception is also
-	 * thrown if a newly created planFile is not assigned a year.
-	 * 
-	 * @param plan
-	 * @param cookie
-	 * @throws IllegalArgumentException
+	 * Gets the all years.
+	 *
+	 * @param cookie the cookie
+	 * @return the all years
+	 * @throws IllegalArgumentException the illegal argument exception
+	 * @throws RemoteException the remote exception
+	 */
+	ArrayList<String> getAllYears(String cookie)throws IllegalArgumentException, RemoteException;
+	
+	/**
+	 * Save plan.
+	 *
+	 * @param plan the plan
+	 * @param cookie the cookie
+	 * @throws IllegalArgumentException the illegal argument exception
+	 * @throws RemoteException the remote exception
 	 */
 	void savePlan(PlanFile plan, String cookie) throws IllegalArgumentException, RemoteException;
 
 	/**
-	 * Adds new user to loginMap, generates new cookie for user and adds to
-	 * cookieMap. Throws exception if user isn't an admin or the department doesn't
-	 * exist.
-	 * 
-	 * @param username
-	 * @param password
-	 * @param departmentName
-	 * @param isAdmin
-	 * @param cookie         of the admin
-	 * @throws IllegalArgumentException
+	 * Adds the user.
+	 *
+	 * @param username the username
+	 * @param password the password
+	 * @param departmentName the department name
+	 * @param isAdmin the is admin
+	 * @param cookie the cookie
+	 * @throws IllegalArgumentException the illegal argument exception
+	 * @throws RemoteException the remote exception
 	 */
 	void addUser(String username, String password, String departmentName, boolean isAdmin, String cookie)
 			throws IllegalArgumentException, RemoteException;
 
 	/**
-	 * Sets whether or not a planFile is editable
-	 * 
-	 * @param departmentName
-	 * @param year
-	 * @param canEdit
-	 * @param cookie
-	 * @throws IllegalArgumentException
+	 * Flag plan.
+	 *
+	 * @param departmentName the department name
+	 * @param year the year
+	 * @param canEdit the can edit
+	 * @param cookie the cookie
+	 * @throws IllegalArgumentException the illegal argument exception
+	 * @throws RemoteException the remote exception
 	 */
 	void flagPlan(String departmentName, String year, boolean canEdit, String cookie)
 			throws IllegalArgumentException, RemoteException;
 
 	/**
-	 * Adds a new department
-	 * 
-	 * @param departmentName
-	 * @param cookie
-	 * @throws IllegalArgumentException
+	 * Adds the department.
+	 *
+	 * @param departmentName the department name
+	 * @param cookie the cookie
+	 * @throws IllegalArgumentException the illegal argument exception
+	 * @throws RemoteException the remote exception
 	 */
 	void addDepartment(String departmentName, String cookie) throws IllegalArgumentException, RemoteException;
 
 	/**
-	 * Allows developers to add a new plan outline
-	 * 
-	 * @param name
-	 * @param plan
+	 * Adds the plan template.
+	 *
+	 * @param name the name
+	 * @param plan the plan
+	 * @throws RemoteException the remote exception
 	 */
 	void addPlanTemplate(String name, PlanFile plan) throws RemoteException;
 
 	/**
-	 * Serializes server to xml
-	 * 
-	 * @throws FileNotFoundException
+	 * Save.
+	 *
+	 * @throws RemoteException the remote exception
 	 */
 	void save() throws RemoteException;
 
 	/**
-	 * @return the loginMap
+	 * Gets the login map.
+	 *
+	 * @return the login map
+	 * @throws RemoteException the remote exception
 	 */
 	ConcurrentHashMap<String, Account> getLoginMap() throws RemoteException;
 
 	/**
-	 * @param loginMap the loginMap to set
+	 * Sets the login map.
+	 *
+	 * @param loginMap the login map
+	 * @throws RemoteException the remote exception
 	 */
 	void setLoginMap(ConcurrentHashMap<String, Account> loginMap) throws RemoteException;
 
 	/**
-	 * @return the cookieMap
+	 * Gets the cookie map.
+	 *
+	 * @return the cookie map
+	 * @throws RemoteException the remote exception
 	 */
 	ConcurrentHashMap<String, Account> getCookieMap() throws RemoteException;
 
 	/**
-	 * @param cookieMap the cookieMap to set
+	 * Sets the cookie map.
+	 *
+	 * @param cookieMap the cookie map
+	 * @throws RemoteException the remote exception
 	 */
 	void setCookieMap(ConcurrentHashMap<String, Account> cookieMap) throws RemoteException;
 
 	/**
-	 * @return the departmentMap
+	 * Gets the department map.
+	 *
+	 * @return the department map
+	 * @throws RemoteException the remote exception
 	 */
 	ConcurrentHashMap<String, Department> getDepartmentMap() throws RemoteException;
 
 	/**
-	 * @param departmentMap the departmentMap to set
+	 * Sets the department map.
+	 *
+	 * @param departmentMap the department map
+	 * @throws RemoteException the remote exception
 	 */
 	void setDepartmentMap(ConcurrentHashMap<String, Department> departmentMap) throws RemoteException;
 
 	/**
-	 * @return the planTemplateMap
+	 * Gets the plan template map.
+	 *
+	 * @return the plan template map
+	 * @throws RemoteException the remote exception
 	 */
 	ConcurrentHashMap<String, PlanFile> getPlanTemplateMap() throws RemoteException;
 
 	/**
-	 * @param planTemplateMap the planTemplateMap to set
+	 * Sets the plan template map.
+	 *
+	 * @param planTemplateMap the plan template map
+	 * @throws RemoteException the remote exception
 	 */
 	void setPlanTemplateMap(ConcurrentHashMap<String, PlanFile> planTemplateMap) throws RemoteException;
 
