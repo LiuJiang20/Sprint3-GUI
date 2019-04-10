@@ -234,7 +234,7 @@ public class MainWindowView extends Application implements Observer
 	}
 	
 	/**
-	 * Expand.
+	 * Expand every treeItem
 	 *
 	 * @param root the root
 	 */
@@ -248,7 +248,7 @@ public class MainWindowView extends Application implements Observer
 	}
 	
 	/**
-	 * Convert tree.
+	 * Convert the node tree to treeview.
 	 *
 	 * @param root the root
 	 * @return the tree item
